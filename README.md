@@ -1,1 +1,1 @@
-currently 10 pics
+currently 20 pics
