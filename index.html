@@ -1,4 +1,33 @@
-<script>
-	let t = Math.floor(Math.random() * 100);
-	document.write("<title>setu colle</title><img alt=\"" + t + "\" src=\"pic/" + t + ".png\"\>");
-</script>
+<head>
+	<title>
+		random setu
+	</title>
+	<script>
+		function readTextFile(file, ext, callback, isLocked = true) {
+			let xhr = new XMLHttpRequest();
+			xhr.overrideMimeType("application/" + ext);
+			xhr.open("GET", file, !isLocked);
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4)
+					callback(xhr.responseText, xhr.status);
+			}
+			try {
+				xhr.send();
+			} catch {
+				alert("[Error] Can't fetch resource: " + file + "");
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<img id="cur" style="text-align: center; height: -webkit-fill-available;">
+	<script>
+		readTextFile(".\\list.json", "json", function (txt, sta) {
+			if (sta == 200) {
+				let lst = JSON.parse(txt), id = Math.floor(Math.random() * lst.length);
+				document.getElementById("cur").setAttribute("src", lst[id]);
+			}
+		});
+	</script>
+</body>
