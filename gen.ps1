@@ -8,10 +8,8 @@ function PrintFilename {
 		$isfirst
 	)
 	$cnt = 0
-	# Write-Host "#" $dir
 	foreach ($i in Get-ChildItem -path $dir) {
 		if ($i -is [System.IO.FileInfo]) {
-			# Write-Host "! " $dir "\" $i
 			if ($isfirst -eq 0){
 				Write-Output "," >> $pth
 			}
